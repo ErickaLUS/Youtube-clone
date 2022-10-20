@@ -19,21 +19,12 @@ function Home() {
   const { videos, activeCategory, loading } = useSelector(
     (state) => state.homeVideos
   );
-  console.log(videos);
-  /* const fetchData = () => {
-  if (activeCategory === "All") dispatch(getPopularVideos());
-  else {
-    dispatch(getVideosByCategory(activeCategory));
-  }
-}; */
 
   return (
     <Container>
-      {videos.map((video) => (
+      {videos?.map((video) => (
         <Cards video={video} key={video.id} />
       ))}
-
-      
     </Container>
   );
 }

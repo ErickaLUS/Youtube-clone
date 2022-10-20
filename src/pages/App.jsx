@@ -12,7 +12,7 @@ import Subscription from "./pages/Subscription.jsx";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
-import VideoPlayBack from "./pages/VideoPlayBack";
+import VideoPlayBack from "./components/VideoPlayBack";
 
 const Container = styled.div`
   display: flex;

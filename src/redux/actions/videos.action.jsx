@@ -8,6 +8,10 @@ import {
   SUBSCRIPTIONS_CHANNEL_FAIL,
   SUBSCRIPTIONS_CHANNEL_REQUEST,
   SUBSCRIPTIONS_CHANNEL_SUCCESS,
+  CHANNEL_VIDEOS_REQUEST,
+  CHANNEL_VIDEOS_SUCCESS,
+  CHANNEL_VIDEOS_FAIL,
+  CHANNEL_DETAILS_FAIL,
 } from "../actionType";
 import request from "../../api";
 
@@ -121,6 +125,43 @@ export const getSubscribedChannels = () => async (dispatch, getState) => {
     console.log(error.response.data);
     dispatch({
       type: SUBSCRIPTIONS_CHANNEL_FAIL,
+      payload: error.response.data,
+    });
+  }
+};
+export const getVideosByChannel = (id) => async (dispatch) => {
+  try {
+    dispatch({
+      type: CHANNEL_VIDEOS_REQUEST,
+    });
+
+    // 1. get upload playlist id
+    const {
+      data: { items },
+    } = await request("/channels", {
+      params: {
+        part: "contentDetails",
+        id: id,
+      },
+    });
+    const uploadPlaylistId = items[0].contentDetails.relatedPlaylists.uploads;
+    // 2. get the videos using the id
+    const { data } = await request("/playlistItems", {
+      params: {
+        part: "snippet,contentDetails",
+        playlistId: uploadPlaylistId,
+        maxResults: 40,
+      },
+    });
+
+    dispatch({
+      type: CHANNEL_VIDEOS_SUCCESS,
+      payload: data.items,
+    });
+  } catch (error) {
+    console.log(error.response.data.message);
+    dispatch({
+      type: CHANNEL_DETAILS_FAIL,
       payload: error.response.data,
     });
   }

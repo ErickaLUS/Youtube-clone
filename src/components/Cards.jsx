@@ -49,7 +49,7 @@ const Info = styled.div`
   color: ${({ theme }) => theme.textSoft};
 `;
 
-function Cards({ video }) {
+function Cards({ video, channel }) {
   const navigate = useNavigate();
   const {
     id,
@@ -66,7 +66,7 @@ function Cards({ video }) {
   const handleClick = () => {
     navigate(`/videos/${id}`);
   };
-
+  console.log(id);
   return (
     <Container onClick={handleClick}>
       <Image src={medium.url} />
