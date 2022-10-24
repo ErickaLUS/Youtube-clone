@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 import VideoPlayBack from "./components/VideoPlayBack";
+import Search from "./page/Search";
 
 const Container = styled.div`
   display: flex;
@@ -89,6 +90,14 @@ export default function App() {
         element={
           <Layout>
             <VideoPlayBack />
+          </Layout>
+        }
+      />
+      <Route
+        path="/search/:search"
+        element={
+          <Layout>
+            <Search />
           </Layout>
         }
       />

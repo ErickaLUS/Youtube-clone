@@ -12,6 +12,9 @@ import {
   CHANNEL_VIDEOS_SUCCESS,
   CHANNEL_VIDEOS_FAIL,
   CHANNEL_DETAILS_FAIL,
+  SEARCHED_VIDEO_FAIL,
+  SEARCHED_VIDEO_REQUEST,
+  SEARCHED_VIDEO_SUCCESS,
 } from "../actionType";
 import request from "../../api";
 
@@ -95,7 +98,6 @@ export const getVideoById = (id) => async (dispatch) => {
       payload: data.items[0],
     });
   } catch (error) {
-    console.log(error.message);
     dispatch({
       type: SELECTED_VIDEO_FAIL,
       payload: error.message,
@@ -163,6 +165,32 @@ export const getVideosByChannel = (id) => async (dispatch) => {
     dispatch({
       type: CHANNEL_DETAILS_FAIL,
       payload: error.response.data,
+    });
+  }
+};
+export const getVideosBySearch = (keyword) => async (dispatch) => {
+  try {
+    dispatch({
+      type: SEARCHED_VIDEO_REQUEST,
+    });
+    const { data } = await request("/search", {
+      params: {
+        part: "snippet",
+
+        maxResults: 20,
+        q: keyword,
+        type: "video,channel",
+      },
+    });
+
+    dispatch({
+      type: SEARCHED_VIDEO_SUCCESS,
+      payload: data.items,
+    });
+  } catch (error) {
+    dispatch({
+      type: SEARCHED_VIDEO_FAIL,
+      payload: error.message,
     });
   }
 };

@@ -1,8 +1,9 @@
 import styled from "@emotion/styled";
-import React from "react";
+import React, { useState } from "react";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import SearchIcon from "@mui/icons-material/Search";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   position: sticky;
@@ -20,7 +21,7 @@ const Wrapper = styled.div`
   position: relative;
 `;
 
-const Search = styled.div`
+const Form = styled.form`
   width: 40%;
   position: absolute;
   left: 0px;
@@ -36,13 +37,14 @@ const Search = styled.div`
 
 const Input = styled.input`
   border: none;
+  outline: none;
   background-color: transparent;
 `;
 
 const Button = styled.button`
   padding: 5px 15px;
   background-color: transparent;
-  border: 1px solid red;
+  border: none;
   color: red;
   border-radius: 10px;
   font-weight: 500;
@@ -68,20 +70,35 @@ const Avatar = styled.img`
 `;
 
 const Navbar = () => {
+  const [search, setSearch] = useState("");
+  const navigate = useNavigate();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    navigate(`/search/${search}`);
+  };
   return (
     <Container>
       <Wrapper>
-        <Search>
-          <Input placeholder="Search" />
-          <SearchIcon />
-        </Search>
+        <Form onSubmit={handleSubmit}>
+          <Input
+            type="text"
+            placeholder="Search"
+            value={search}
+            onChange={(e) => {
+              setSearch(e.target.value);
+            }}
+          />
+          <Button type="submit">
+            <SearchIcon />
+          </Button>
+        </Form>
 
-        <Link to="/SignIn" style={{ textDecoration: "none" }}>
+        {/*         <Link to="/SignIn" style={{ textDecoration: "none" }}>
           <Button>
             <AccountCircleIcon />
             SIGN IN
           </Button>
-        </Link>
+        </Link> */}
       </Wrapper>
     </Container>
   );
