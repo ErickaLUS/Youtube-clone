@@ -27,14 +27,14 @@ function Search() {
     dispatch(getVideosBySearch(search));
   }, [search, dispatch]);
   const { videos } = useSelector((state) => state.searchedVideos);
-  console.log("try");
+  /* console.log("try"); */
   console.log(videos);
 
   return (
     <Container>
       {videos?.map((video) => (
         <Link
-          to={`/search/${video?.snippet?.channelId}`}
+          to={`/videos/${video?.id.videoId}`}
           style={{ textDecoration: "none" }}
           key={video.id}
         >

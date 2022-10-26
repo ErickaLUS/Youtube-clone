@@ -1,8 +1,8 @@
+import styled from "styled-components";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { login } from "../redux/actions/SignIn.action";
-import styled from "@emotion/styled";
 
 const Container = styled.div`
   display: flex;
@@ -12,15 +12,17 @@ const Container = styled.div`
   color: ${({ theme }) => theme.text};
 `;
 const Wrapper = styled.div`
+  background-color: ${({ theme }) => theme.textSoft};
+  border: 1px solid #606060;
   display: flex;
   align-items: center;
   flex-direction: column;
-  background-color: ${({ theme }) => theme.bgLighter};
-  border: 1px solid ${({ theme }) => theme.soft};
+
   padding: 20px 50px;
   gap: 10px;
 `;
 const Title = styled.h1`
+  color: ${({ theme }) => theme.text};
   font-size: 26px;
 `;
 
@@ -30,7 +32,7 @@ const SubTitle = styled.h2`
 `;
 
 const Input = styled.input`
-  border: 1px solid ${({ theme }) => theme.soft};
+  border: 1px solid #606060;
   border-radius: 3px;
   padding: 10px;
   background-color: transparent;
