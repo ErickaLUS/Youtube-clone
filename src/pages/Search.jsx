@@ -3,17 +3,23 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getVideosBySearch } from "../redux/actions/videos.action";
-import Mastery from "../img/mastery.jpg";
-import { Title } from "@mui/icons-material";
+
 import { Link } from "react-router-dom";
 const Container = styled.div``;
 const Image = styled.img`
-  width: 24%;
-  height: 7%;
+  width: 90%;
+  height: 200px;
   background-color: #9999;
+  margin: 25px;
 `;
-const Description= styled.div``;
-
+const Description = styled.div``;
+const Wrapper = styled.div`
+  display: flex;
+`;
+const Title = styled.div`
+  margin-top: 35px;
+  color: ${({ theme }) => theme.text};
+`;
 function Search() {
   const { search } = useParams();
   const dispatch = useDispatch();
@@ -32,13 +38,16 @@ function Search() {
           style={{ textDecoration: "none" }}
           key={video.id}
         >
-          <div>
-            <Image src={video?.snippet?.thumbnails?.medium?.url} alt="tg" />
-
-            <div key={video.id}>{video.snippet.title}</div>
-          {/*   <Description>{video.snippet.description}</Description> */}
-           {/*  <p>{video?.snippet?.channelId}</p> */}
-          </div>
+          <Wrapper>
+            <div>
+              <Image src={video?.snippet?.thumbnails?.medium?.url} alt="tg" />
+            </div>
+            <div>
+              <Title key={video.id}>{video.snippet.title}</Title>
+              {/*  <Description>{video.snippet.description}</Description> */}
+              {/*  <p>{video?.snippet?.channelId}</p> */}
+            </div>
+          </Wrapper>
         </Link>
       ))}
     </Container>

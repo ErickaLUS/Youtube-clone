@@ -92,10 +92,7 @@ const Menu = ({ darkMode, setDarkMode }) => {
           <HomeIcon />
           Home
         </Link>
-        <Item>
-          <ExploreIcon />
-          Explore
-        </Item>
+
         <Link
           to="/Subscription"
           style={{

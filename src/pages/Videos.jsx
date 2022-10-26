@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
-import styled from "@emotion/styled";
+
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { getValue } from "@mui/system";
+import styled from "styled-components";
+/* import { getValue } from "@mui/system"; */
 import { getVideoById } from "../redux/actions/videos.action";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbDownIcon from "@mui/icons-material/ThumbDown";
@@ -68,13 +69,7 @@ function Videos() {
 
         <Title>{video?.snippet?.title}</Title>
         <Details>
-          <Info>660,998 views . day ago</Info>
-          <Buttons>
-            <Button>
-              <ThumbUpIcon />
-              <ThumbDownIcon />
-            </Button>
-          </Buttons>
+          <Info></Info>
         </Details>
       </Content>
       <Recommendation></Recommendation>
