@@ -1,22 +1,30 @@
 import React from "react";
-import styled from "@emotion/styled";
+import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { getSubscribedChannels } from "../redux/actions/videos.action";
 import { useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 const Container = styled.div``;
-const Hr = styled.hr`
-  margin-left: 0px;
-  border: 3px solid ${({ theme }) => theme.soft};
+
+const Title = styled.div`
+  margin-top: 35px;
+  color: ${({ theme }) => theme.text};
 `;
-const Title = styled.div``;
 const Content = styled.div``;
 const Image = styled.img`
-  width: 24%;
-  height: 7%;
+  width: 250px;
+  height: 240px;
   background-color: #9999;
+  margin: 25px;
+  
 `;
-const Description = styled.div``;
+const Description = styled.div`
+  color: ${({ theme }) => theme.textSoft};
+  margin-top: 25px;
+`;
+const Wrapper = styled.div`
+  display: flex;
+`;
 
 const Subscription = () => {
   const dispatch = useDispatch();
@@ -41,13 +49,16 @@ const Subscription = () => {
           style={{ textDecoration: "none" }}
           key={video.id}
         >
-          <div>
-            <Image src={video?.snippet?.thumbnails?.medium?.url} alt="tg" />
-
-            <div key={video.id}>{video.snippet.title}</div>
-            <Description>{video.snippet.description}</Description>
-            <p>{video?.snippet?.channelId}</p>
-          </div>
+          <Wrapper>
+            <div>
+              <Image src={video?.snippet?.thumbnails?.medium?.url} alt="tg" />
+            </div>
+            <div>
+              <Title key={video.id}>{video.snippet.title}</Title>
+              <Description>{video.snippet.description}</Description>
+       {/*        <p>{video?.snippet?.channelId}</p> */}
+            </div>
+          </Wrapper>
         </Link>
       ))}
     </Container>

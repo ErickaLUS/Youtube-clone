@@ -1,4 +1,4 @@
-import styled from "@emotion/styled";
+import styled from "styled-components";
 import React, { useState } from "react";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import SearchIcon from "@mui/icons-material/Search";
@@ -6,9 +6,9 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
+  background-color: ${({ theme }) => theme.bgLighter};
   position: sticky;
   top: 0;
-  background-color: ${({ theme }) => theme.bgLighter};
   height: 50px;
 `;
 
@@ -55,11 +55,11 @@ const Button = styled.button`
 `;
 
 const User = styled.div`
+  color: ${({ theme }) => theme.text};
   display: flex;
   align-items: center;
   gap: 10px;
   font-weight: 500;
-  color: ${({ theme }) => theme.text};
 `;
 
 const Avatar = styled.img`

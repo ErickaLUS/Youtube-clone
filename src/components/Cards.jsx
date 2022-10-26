@@ -1,7 +1,7 @@
-import styled from "@emotion/styled";
-import Mastery from "../img/mastery.jpg";
+import styled from "styled-components";
+
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   width: 360px;
@@ -10,6 +10,7 @@ const Container = styled.div`
 `;
 
 const Image = styled.img`
+  margin-top: 15px;
   width: 90%;
   height: 200px;
   background-color: #9999;
@@ -21,32 +22,25 @@ const Details = styled.div`
   gap: 12px;
 `;
 
-const ChannelImage = styled.img`
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background-color: #999;
-`;
-
 const Texts = styled.div``;
 
 const Title = styled.h1`
   margin-top: 2px;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 500;
   color: ${({ theme }) => theme.text};
 `;
 
 const ChannelName = styled.h2`
+  color: ${({ theme }) => theme.textSoft};
   font-size: 14px;
   font-weight: 500;
   margin: 10px 0px;
-  color: ${({ theme }) => theme.textSoft};
 `;
 
 const Info = styled.div`
-  font-size: 14px;
   color: ${({ theme }) => theme.textSoft};
+  font-size: 14px;
 `;
 
 function Cards({ video, channel }) {
@@ -71,11 +65,10 @@ function Cards({ video, channel }) {
     <Container onClick={handleClick}>
       <Image src={medium.url} />
       <Details>
-        <ChannelImage />
         <Texts>
           <Title>{title}</Title>
           <ChannelName>{channelTitle}</ChannelName>
-          <Info>660,998 views . day ago</Info>
+          <Info>{publishedAt}</Info>
         </Texts>
       </Details>
     </Container>

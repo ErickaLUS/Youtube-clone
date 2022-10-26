@@ -6,10 +6,16 @@ import { useEffect } from "react";
 import { getVideosByChannel } from "../redux/actions/videos.action";
 import Cards from "../components/Cards";
 import { Link } from "react-router-dom";
-const Container = styled.div``;
+const Container = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  /* width: 360px;*/
+  margin-bottom: 45px;
+  cursor: pointer;
+`;
 const Image = styled.img`
-  width: 24%;
-  height: 7%;
+  width: 90%;
+  height: 200px;
   background-color: #9999;
 `;
 const VideoPlayBack = () => {
