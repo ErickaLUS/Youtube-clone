@@ -14,6 +14,7 @@ const Container = styled.div`
   cursor: pointer;
 `;
 const Image = styled.img`
+ 
   width: 90%;
   height: 200px;
   background-color: #9999;
@@ -27,7 +28,7 @@ const VideoPlayBack = () => {
   }, [dispatch, channelId]);
   const navigate = useNavigate();
   const { videos, loading } = useSelector((state) => state.channelVideos);
-  console.log(videos[0]?.snippet.resourceId.videoId);
+  console.log("BBBBB", videos[0]?.snippet.resourceId.videoId);
   const handleClick = (id) => {
     navigate(`/videos/${id}`);
   };

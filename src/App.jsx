@@ -14,6 +14,9 @@ import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 import VideoPlayBack from "./pages/VideoPlayBack";
 import Search from "./pages/Search";
+import socketIO from "socket.io-client";
+import { Comments } from "./components/Comments";
+const socket = socketIO.connect("http://localhost:4000");
 const Container = styled.div`
   display: flex;
 `;
@@ -73,6 +76,7 @@ export default function App() {
         element={
           <Layout>
             <Videos />
+            <Comments socket={socket} />
           </Layout>
         }
       />
