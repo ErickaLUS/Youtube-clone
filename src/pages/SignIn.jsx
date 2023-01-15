@@ -13,7 +13,6 @@ const Container = styled.div`
 `;
 const Wrapper = styled.div`
   background-color: ${({ theme }) => theme.textSoft};
-  border: 1px solid #606060;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -69,13 +68,9 @@ const SignIn = () => {
     <Container>
       <Wrapper>
         <Title>Sign In</Title>
+       <Button onClick={handleLogin}>Se connecter avec google</Button>
         <SubTitle>To continue to MollTube</SubTitle>
-        <Input placeholder="username" />
-
-        <Input type="password" placeholder="password" />
-        <Button>Sign In</Button>
-        <Button onClick={handleLogin}>Se connecter avec google</Button>
-      </Wrapper>
+       </Wrapper>
     </Container>
   );
 };

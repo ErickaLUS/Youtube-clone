@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { format} from 'timeago.js'
 
 const Container = styled.div`
   width: 360px;
@@ -9,7 +10,8 @@ const Container = styled.div`
 `;
 
 const Image = styled.img`
-  margin-top: 15px;
+  margin-top: 25px;
+  margin-left: 25px;
   width: 90%;
   height: 200px;
   background-color: #9999;
@@ -18,6 +20,7 @@ const Image = styled.img`
 const Details = styled.div`
   display: flex;
   margin-top: 16px;
+  margin-left: 25px;
   gap: 12px;
 `;
 
@@ -67,7 +70,7 @@ function Cards({ video, channel }) {
         <Texts>
           <Title>{title}</Title>
           <ChannelName>{channelTitle}</ChannelName>
-          <Info>{publishedAt}</Info>
+          <Info>{format(publishedAt)}</Info>
         </Texts>
       </Details>
     </Container>
