@@ -9,6 +9,7 @@ import {
   StyleForm,
   StyleInput,
   StyleNewComment,
+  StyleSend
 } from "./style";
 import socketIO from "socket.io-client";
 import axios from "axios";
@@ -55,7 +56,7 @@ export const Comments = () => {
           console.log({
             socket: {
               name: user.name,
-              picture: user.photoURL,
+              picture: user?.photoURL,
               text: comment,
               id: `${socket.id}${Math.random()}`,
             },
@@ -85,16 +86,18 @@ export const Comments = () => {
   return (
     <StyleContainer>
       <StyleNewComment>
-        <StyleAvatar src={Mastery} />
+        <StyleAvatar src={user?.photoURL} />
         <StyleForm onSubmit={handleSendMessage}>
           <StyleInput
             type="text"
             placeholder="Add a comment..."
-            value={comment}
             onChange={(e) => setComment(e.target.value)}
+            value={comment}
           />
+          <StyleSend>Send</StyleSend>
         </StyleForm>
       </StyleNewComment>
+
       <Comment comments={comments} setComments={setComments} />
     </StyleContainer>
   );

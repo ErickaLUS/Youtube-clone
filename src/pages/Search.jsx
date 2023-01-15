@@ -17,7 +17,7 @@ const Wrapper = styled.div`
   display: flex;
 `;
 const Title = styled.div`
-  margin-top: 35px;
+  margin-top: 105px;
   color: ${({ theme }) => theme.text};
 `;
 function Search() {

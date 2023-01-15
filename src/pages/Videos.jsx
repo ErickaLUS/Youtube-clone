@@ -5,12 +5,7 @@ import styled from "styled-components";
 /* import { Comments } from "../components/Comments"; */
 /* import { getValue } from "@mui/system"; */
 import { getVideoById } from "../redux/actions/videos.action";
-import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
-import ThumbDownOffAltIcon from "@mui/icons-material/ThumbDownOffAlt";
-import ReplyIcon from "@mui/icons-material/Reply";
-import Mastery from "../img/mastery.jpg";
-import numeral from "numeral";
-/* import { format } from "react-number-format/types/numeric_format"; */
+import ShowMoreText from "react-show-more-text";
 import { format} from 'timeago.js';
 
 const Container = styled.div`
@@ -105,16 +100,7 @@ const Description = styled.p`
   font-size: 14px;
 `;
 
-const Subscribe = styled.button`
-  background-color: #cc1a00;
-  font-weight: 500;
-  color: white;
-  border: none;
-  border-radius: 3px;
-  height: max-content;
-  padding: 10px 20px;
-  cursor: pointer;
-`;
+
 
 function Videos() {
   const { id } = useParams();
@@ -144,21 +130,10 @@ function Videos() {
         <Title>{video?.snippet?.title}</Title>
         <Details>
           <Info>
-            {video?.statistics?.viewCount} views ~{format(video?.snippet?.publishedAt)}
+            {video?.statistics?.viewCount} views ~
+            {format(video?.snippet?.publishedAt)}
           </Info>
-          <Buttons>
-            <Button>
-              <ThumbUpOffAltIcon /> {video?.statistics?.likeCount}
-            </Button>
-            <Button>
-              <ThumbDownOffAltIcon />
-              {video?.statistics?.dislikeCount}
-            </Button>
-            {/*  <Button>
-              <ReplyIcon />
-              Share
-            </Button> */}
-          </Buttons>
+         
         </Details>
         <Hr />
         <Channel>
@@ -170,10 +145,20 @@ function Videos() {
                 {video?.statistics?.subscriberCount}
                 subscribers
               </ChannelCounter>
-              <Description>{video?.snippet?.description}</Description>
+              <Description>
+                <ShowMoreText
+                  lines={2}
+                  more="VOIR PLUS"
+                  less="VOIR MOINS"
+                  anchorClass="showMoreText"
+                  expanded={false}
+                >
+                  {video?.snippet?.description}
+                </ShowMoreText>
+              </Description>
             </ChannelDetail>
           </ChannelInfo>
-          <Subscribe>Subscribe</Subscribe>
+      
         </Channel>
         <Hr />
       </Content>
